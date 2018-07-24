@@ -1,97 +1,105 @@
-\chapter{EFT-Modell mit MG5}
-In diesem Kapitel erfolgt eine Variation der Wilson-Koeffizienten mit Hilfe eines EFT Modells für MG. Dies ermöglicht die Berechnung eines Modells der Wirkungsquerschnitte für den EFTfitter mit dessen Hilfe später die Wilson-Koeffizienten bestimmt werden können.
+\chapter{EFT-Modell mit MadGraph5}
+In diesem Kapitel erfolgt eine Variation der Wilson-Koeffizienten mit Hilfe  von MadGraph5 unter der Verwendung eines EFT Modells. Dies ermöglicht die Berechnung eines approximierten Modells der Wirkungsquerschnitte für den EFTfitter mit dessen Hilfe später die Wilson-Koeffizienten bestimmt werden können. Dieses Modell wird benötigt, um die Laufzeiten des EFT-Fitters zu verringern.
 
 \section{Zusammensetzung des Wirkungsquerschnitts}
-Der Fit des EFTfitters basiert auf einem funktionellen Zusammenhang zwischen den Observablen, in diesem Fall den Wirkungsquerschnitten, und den Operatoren höherer Ordnung. Diese Abhängigkeit wird durch das implementierte Modell und dem entsprechend mit der Likelihood ausgedrückt.\\
-Für die Berechnung des Wirkungsquerschnitts werden alle zugehörigen Feynman-Graphen, sowohl die des SM, als auch die der EFT-Operatoren, betrachtet. Daher ergibt sich der Wirkungsquerschnitt zu:
+Der Fit des EFTfitters basiert auf einem funktionellen Zusammenhang zwischen den Observablen, in diesem Fall den Wirkungsquerschnitten, und den Operatoren höherer Ordnung. Diese Abhängigkeit wird durch das implementierte Modell in der Likelihood ausgedrückt. Diese Likelihood wird mit einer Approximation durch MG bestimmt, da die Laufzeit des EFTfitters dadurch deutlich geringer wird.\\
+Für die Berechnung des Wirkungsquerschnitts werden die zugehörigen Feynman-Graphen, sowohl die des SM, als auch die der EFT-Operatoren, betrachtet. Damit ergibt sich die Approximation des Wirkungsquerschnitt zu:
 \begin{align}
   \sigma = \sigma_{SM} + \frac{1}{\Lambda^2} \sum_{i} C_i \sigma_i^\text{interf.} + \frac{1}{\Lambda^4} \sum_{i \leq j} C_i C_j \sigma_{ij}^\text{BSM} + \mathcal{O} \left(\frac{1}{\Lambda^6}\right).
 \end{align}
-Die einzelnen Wirkungsquerschnitte $\sigma_i$ besitzen eine quadratische Abhängigkeit von den Wilson-Koeffizienten $C_i$ und die BSM-Beiträge in führender Ordnung ergeben sich durch die Interferenz zwischen dem SM und der BSM-Physik. Dies liegt unter Anderem daran, dass die Beiträge durch die Interferenz zwischen den BSM-Physik-Beiträgen untereinander mit $\frac{1}{\Lambda^4}$ unterdrückt sind. Um trotzdem ein möglichst genaues Modell für die Abhängigkeit der Wirkungsquerschnitte von den Wilson-Koeffizienten zu erhalten, müssen auch diese Beiträge betrachtet werden. Dies wurde bereits in dem Papier\cite{Wilson-Beiträge} untersucht. Zur Bestimmung des Modells ist es zudem notwendig die Wirkungsquerschnitte für verschiedene Konfigurationen der Wilson-Koeffizienten zu bestimmen.
+Die einzelnen Wirkungsquerschnitte $\sigma$ besitzen eine quadratische Abhängigkeit von den Wilson-Koeffizienten $C_i$ und die BSM-Beiträge in führender Ordnung ergeben sich durch die Interferenz zwischen dem SM und der BSM-Physik. Dies liegt unter Anderem daran, dass die Beiträge durch die Interferenz zwischen den BSM-Physik-Beiträgen untereinander mit $\frac{1}{\Lambda^4}$ unterdrückt sind. Untersuchungen\cite{Wilson-Beiträge} haben bewiesen, dass diese Beiträge trotzdem betrachtet werden sollten, um ein Modell für die Abhängigkeit der Wirkungsquerschnitte von den Wilson-Koeffizienten zu erhalten, da sie deutlich zur Genauigkeit von diesem beitragen.
 
 \section{Variation der Wilson-Koeffizienten mit MadGraph5}
-Eine Möglichkeit die Wilson-Koeffizienten zu variieren ist mit Hilfe eines MG Modells, dass Operatoren der Massendimension sechs enthält und damit eine Berechnung der Wirkungsquerschnitte unter dem Einfluss dieser ermöglicht. Dazu wird in MadGraph5 das TEFT\_EF UFO Modell\cite{EFTModell} eingebunden. Dies erlaubt NLO Rechnung in der QCD und enthält alle für die Top-Quark-Physik relevanten Operatoren der Dimension sechs.
-Die Berechnung erfolgt mit dem genannten Modell in NLO in QCD unter der Verwendung des $\text{CTEQ}6\text{L}1$ PDF Sets. Zudem wird die Energieskala auf $\SI{1}{\tera\electronvolt}$ festgelegt. Unter diesen Vorraussetzungen wird der Prozess $pp~\rightarrow~t\bar{t}~\gamma$ mit den von ATLAS genutzten Schnitten implementiert.\\
-Da die Berechnung statistische Unsicherheiten enthält, bietet es sich an anstatt nur genügend viele Berechnungen der Monte Carlo Wirkungsquerschnitte $\sigma_{MC}$ für ein bestimmtes Gleichungssystem zur Bestimmung der Wirkungsquerschnitte $\sigma_i$ durchzuführen sondern mehr. Zudem werden genauere Ergebnisse erhalten, wenn sowohl Berechnungen bei denen nur ein Wilson-Koeffizient angeschaltet ist, als auch welche beidenen mehrere oder sogar alle betrachtet werden, getätigt werden.\\
+Zur Bestimmung des Modells ist es notwendig die Wirkungsquerschnitte für verschiedene Konfigurationen der Wilson-Koeffizienten zu bestimmen, um sowohl den Einfluss einzelner als auch mehrerer Operatoren untersuchen zukönnen. Eine Möglichkeit die Wilson-Koeffizienten zu variieren, ist mit Hilfe eines  EFT-Modells für MG, das Operatoren der Massendimension sechs enthält, und damit eine Berechnung der Wirkungsquerschnitte unter dem Einfluss dieser ermöglicht. Dazu wird in MG das TEFT\_EF UFO Modell\cite{EFTModell} eingebunden. Dies enthält einige der für die Top-Quark-Physik relevante Operatoren der Dimension sechs und insbesondere die, die an dem Prozess $pp~\rightarrow~t\bar{t}~\gamma$ beteiligt sind.
+Die Berechnung erfolgt mit dem genannten Modell in NLO in QCD unter der Verwendung des $\text{CTEQ}6\text{L}1$ PDF-Sets. Zudem wird die BSM-Energieskala auf $\Lambda = \SI{1}{\tera\electronvolt}$ festgelegt. Unter diesen Vorraussetzungen wird der Prozess $pp~\rightarrow~t\bar{t}~\gamma$ mit den von ATLAS genutzten Schnitten für den gemessenen Phasenraum implementiert.\\
 Die berechneten Monte Carlo Wirkungsquerschnitte:
 \begin{align}
-  \sigma_{MC}({C_i}) = \sigma_{SM} + \sum_{i} C_i \frac{\sigma_i}{\Lambda^2} + \sum_{i \leq j} C_i C_j \frac{\sigma_{ij}}{\Lambda^4} + \mathcal{O}(\frac{1}{\Lambda^6})
+  \sigma_{MC}({C_i}) = \sigma_{SM} + \sum_{i} C_i \frac{\sigma_i}{\Lambda^2} + \sum_{i \leq j} C_i C_j \frac{\sigma_{ij}}{\Lambda^4} + \mathcal{O}\left(\frac{1}{\Lambda^6}\right)
 \end{align}
-bilden die Stützstellen zur späteren Bestimmung der gesuchten Wirkungsquerschnitte. Mit Hilfe des Vakuumerwartungswert des Higgs $\SI{246}{\giga\electronvolt}$ und der Wahl $\Lambda = \SI{1}{\tera\electronvolt}$ lassen sich die $\sigma_{MC}$ in natürliche Einheiten umrechnen. Unter Vernachlässigung de Terme der Ordnung $\mathcal{O}(\frac{1}{\Lambda^6})$ ergeben sie sich zu:
+bilden die Stützstellen zur späteren Bestimmung der gesuchten Parameter $\sigma_i$ und $\sigma_{ij}$. Mit Hilfe des Vakuumerwartungswert des Higgs $v = \SI{246}{\giga\electronvolt}$ und der Wahl $\Lambda = \SI{1}{\tera\electronvolt}$ lassen sich die $\sigma_{MC}$ in die Größenordnung einer Kopplungsstärke umrechnen. Unter Vernachlässigung von Termen der Ordnung $\mathcal{O}(\frac{1}{\Lambda^6})$, ergeben sie sich zu:
 \begin{align}
   \sigma_{MC}({\tilde{C_i}}) \approx \bar{\sigma}_{SM} + \sum_{i} \tilde{C_i} \bar{\sigma_i} + \sum_{i \leq j} \tilde{C_i} \tilde{C_j} \bar{\sigma}_{ij}.
 \end{align}
-Hierbei sind die $\tilde{C}_i = \frac{v^2}{\Lambda^2} C_i$.
+Hierbei sind die $\tilde{C}_i = \frac{v^2}{\Lambda^2} C_i$ und $\bar{\sigma}_i$ die zugehörgen Parameter.
 Bei der Berechnung des $t\bar{t}\gamma$ Produktionswirkungsquerschnitts können, wie in Kapitel~\ref{top} bereits erwähnt, die Operatoren $O_{tG}$, $O_{tW}$ und $O_{tB}$ beitragen. Damit ergibt sich die Interpolationsfunktion zu:
 \begin{align}
   \sigma_{t\bar{t}\gamma, MC}({\tilde{C}_{tG}, \tilde{C}_{tW}, \tilde{C}_{tB}}) = \bar{\sigma}_{SM} + \tilde{C}_{tG}\bar{\sigma}_{tG} + \tilde{C}_{tW}\bar{\sigma}_{tW} + \tilde{C}_{tB}\bar{\sigma}_{tB}\\
-  + \tilde{C}_{tG}^2\bar{\sigma}_{tGtG} + \tilde{C}_{tW}^2\bar{\sigma}_{tWtW} + \tilde{C}_{tB}^2\bar{\sigma}_{tBtB}\\
-  + \tilde{C}_{tG} \tilde{C}_{tW}\bar{\sigma}_{tGtW} + \tilde{C}_{tG} \tilde{C}_{tB}\bar{\sigma}_{tGtB} + \tilde{C}_{tW} \tilde{C}_{tB}\bar{\sigma}_{tWtB}
+  + \tilde{C}_{tG}^2\bar{\sigma}_{tGtG} + \tilde{C}_{tW}^2\bar{\sigma}_{tWtW} + \tilde{C}_{tB}^2\bar{\sigma}_{tBtB}\\ \nonumber
+  + \tilde{C}_{tG} \tilde{C}_{tW}\bar{\sigma}_{tGtW} + \tilde{C}_{tG} \tilde{C}_{tB}\bar{\sigma}_{tGtB} + \tilde{C}_{tW} \tilde{C}_{tB}\bar{\sigma}_{tWtB} \nonumber
 \end{align}
-und es müssen insgesamt zehn Parameter $\bar{\sigma_i}$ und $\bar{\sigma}_{ij}$ bestimmt werden. Dazu werden die Wilson-Koeffizienten $C_{tG}$, $C_{tW}$ und $C_tB$ im Bereich $[-30~,~30]$ variiert. Um erneut nur die semileptonischen Endzustände zu betrachten, müssen auch in diesem Fall die $\sigma_{t\bar{t}\gamma, MC}$ mit dem $\mathrm{BR} = \SI{30}{\percent}$ multipliziert werden. Aus diesen Berechnungen lassen sich dann mit der Methode der kleinsten Quadrate die gesuchten Parameter bestimmen, aus denen sich schließlich das Modell für den EFTfitter ergibt.
+und es müssen insgesamt zehn Parameter $\bar{\sigma_i}$ und $\bar{\sigma}_{ij}$ bestimmt werden. Dazu werden die Wilson-Koeffizienten $C_{tG}$, $C_{tW}$ und $C_tB$ im Bereich $[-30~,~30]$ variiert. Auf Grund der statistischen Unsicherheiten werden insgesamt $50$ verschiedene Variationen durchgeführt, bei denen ein, zwei oder alle der Wilson-Koeffizienten ungleich Null sind.
+Um erneut nur die semileptonischen Endzustände zu betrachten, müssen auch in diesem Fall die $\sigma_{t\bar{t}\gamma, MC}$ mit dem semileptonischen Verzweigungsverhältnis $\mathrm{BR} = \SI{30}{\percent}$ multipliziert werden. Aus diesen Berechnungen lassen sich dann mit der Methode der kleinsten Quadrate die gesuchten Parameter bestimmen, aus denen sich schließlich das Modell für den EFTfitter ergibt.
 
-\section{Schnitte mit der Hypereben zur Bestimmung der gesuchten Parameter}
-Die Schnitte mit der sich ergebenen Hyperebene sind parabelförmig, wenn nur ein Wilson-Koeffizient variiert wird. Dies ist zu erwarten, da die Zusammensetzung der Monte Carlo Wirkungsquerschnitt in der höchsten Potenz aus quadratischen Anteilen besteht. Die direkt an der Photonabstrahlung beteiligten Wilson-Koeffizienten $C_{tW}$ und $C_{tB}$ folgen ziemlich genau diesem parabelförmigen Verlauf. Dies ist in Abbildung~\ref{fig:WtW} und~\ref{fig:WtB} veranschaulicht. Lediglich die berechneten Wirkungsquerschnitte für den Wilson-Koeffizienten $C_{tG}$ weisen stärke Abweichungen auf, dies ist in Abbildung~\ref{fig:WtG} dargestellt.\\
-Dies liegt vermutlich daran, dass der Wertebereich der berechneten Wirkungsquerschnitte deutlich größer ist. Dadurch sind größere Abweichung plausibel, die ebenfalls größere Unsicherheiten mit sich bringen. Da es sich bei dem Schnitt nur um einen kleinen Bereich handelt, führt dies zudem zu einer größeren Unsicherheit, dadurch das der Schnitt mit einer sehr hochdimensionalen Ebene erfolgt. Die Abweichungen könnten verbessert werden, indem zum einen mehr Stützstellen berechnet werden  und eine genauere Rechnung erfolgt.\\
-Zudem liegen die Wilson-Koeffizienten auf Grund der Wahl der natürlichen Einheiten im Bereich $[-2~,~2]$.
+
+\section{Ergebnisse des Fits zur Bestimmung des Modells für den EFTfitter}
+\label{Modell}
+Durch die Bestimmung der gesuchten Parameter mit der Methode der kleinsten Quadrate werden die folgende Wirkungsquerschnitte:
+\begin{table}[H]
+    \centering
+   \begin{tabular}{ll}
+     $\bar{\sigma}_{SM}   = 202.19 $  & $\bar{\sigma}_{tW}   = 21.68$\\
+     $\bar{\sigma}_{tB}   = 21.69$    & $\bar{\sigma}_{tG}   = 761.42$\\
+     $\bar{\sigma}_{tWtW} = 11.7 $    & $\bar{\sigma}_{tBtB} = 11.77$\\
+     $\bar{\sigma}_{tGtG} = 48.44$    & $\bar{\sigma}_{tGtW} = 6863.76$\\
+     $\bar{\sigma}_{tGtB} = -6483.31$ & $\bar{\sigma}_{tWtB} = 279.22$
+   \end{tabular}
+\end{table}
+erhalten. Die Unsicherheiten aus dem Fit mit der Methode der kleinsten Quadrate werden hier vernachlässigt, da diese nicht im Modell des EFTfitters implementiert werden können.\\
+In den gezeigten Abbildungn ist erkennbar, dass der Fit die erwartete quadratische Form in den jeweiligen Parametern aufweist. Die direkt an der Photonabstrahlung beteiligten Wilson-Koeffizienten $C_{tW}$ und $C_{tB}$ folgen ziemlich genau diesem parabelförmigen Verlauf. Dies ist in Abbildung~\ref{fig:WtW} und~\ref{fig:WtB} veranschaulicht. Lediglich die berechneten Wirkungsquerschnitte für den Wilson-Koeffizienten $C_{tG}$ weisen teilweise Abweichungen auf, wie in Abbildung~\ref{fig:WtG} erkennbar.\\
+Dies könnte daran liegen, dass der Wertebereich der berechneten Wirkungsquerschnitte deutlich größer ist. Dadurch sind größere Abweichung plausibel, die ebenfalls größere Unsicherheiten mit sich bringen. Die Abweichungen könnten verbessert werden, indem zum einen mehr Stützstellen berechnet werden und zum anderen genauere Monte Carlo Rechnungen erfolgen.\\
 \begin{figure}
   \begin{subfigure}[c]{0.5\textwidth}
     \centering
     \includegraphics[width=\textwidth]{Plots/combi_plot_tW.pdf}
-    \subcaption{Verlauf für $C_tW$ mit $C_{tB}=C_{tG}=0$.}
+    \subcaption{Verlauf für $C_{tW}$ mit $C_{tB}=C_{tG}=0$.}
     \label{fig:WtW}
   \end{subfigure}
   \begin{subfigure}[c]{0.5\textwidth}
     \centering
     \includegraphics[width=\textwidth]{Plots/combi_plot_tB.pdf}
-    \subcaption{Verlauf für $C_tB$ mit $C_{tW}=C_{tG}=0$.}
+    \subcaption{Verlauf für $C_{tB}$ mit $C_{tW}=C_{tG}=0$.}
     \label{fig:WtB}
   \end{subfigure}
   \caption{Graphische Darstellung des parabelförmigen Verlaufs der Wirkungsquerschnitte für die Betrachtung einzelner Wilson-Koeffizienten.}
 \end{figure}
 \begin{figure}
   \centering
-  \includegraphics[width=0.5\textwidth]{Plots/combi_plot_tG.pdf}
+  \includegraphics[width=0.6\textwidth]{Plots/combi_plot_tG.pdf}
   \caption{Graphische Darstellung des parabelförmigen Verlaufs der Wirkungsquerschnitte für den Wilson-Koeffizienten $C_{tG}$, wenn $C_{tW}=C_{tB}=0$ ist.}
   \label{fig:WtG}
 \end{figure}
-
-\section{MadGraph Modell für den EFTfitters}
-Durch die Bestimmung der gesuchten Parameter mit der Methode der kleinsten Quadrate werden die folgende Wirkungsquerschnitte:
-\begin{align*}
-  \bar{\sigma}_{SM}   &= 202.19\\
-  \bar{\sigma}_{tG} &= 21.68\\
-  \bar{\sigma}_{tW} &= 21.69\\
-  \bar{\sigma}_{tB} &= 761.42\\
-  \bar{\sigma}_{tGtG} &= 11.79\\
-  \bar{\sigma}_{tWtW} &= 11.77\\
-  \bar{\sigma}_{tBtB} &= 48.44 \\
-  \bar{\sigma}_{tGtW} &= 6863.76\\
-  \bar{\sigma}_{tGtB} &= -6483.31\\
-  \bar{\sigma}_{tWtB} &= 279.22
-\end{align*}
-erhalten. Die Unsicherheiten aus dem Fit mit der Methode der kleinsten Quadrate werden hier vernachlässigt. Dies liegt daran, dass sie lediglich statistische Abschätzungen sind und gewisse Annahmen beinhalten, bei denen nicht klar ist, ob sie für das betrachtete Modell aussagekräftig sind. Zudem handelt es sich um einen hochdimensionalem Fit, sodass sehr geringe Abweichungen, wie sie im Fall von $C_{tG}$ vorhanden sind, starke Auswirkungen haben.
 %
 %
 \chapter{EFT-Interpretation des \texorpdfstring {$t\bar{t}\gamma$}{math} Produktionswirkungsquerschnitts mit dem EFTfitter}
+In diesem Kapitel erfolgt die Untersuchung der am $t\bar{t}\gamma$ Produktionswirkungsquerschnitt beteiligenten Wilson-Koeffizienten mit dem EFTfitter. Dazu wird das mit MadGraph bestimmte Modell aus Kapitel~\ref{Modell} im EFTfitter implemeniert und mit Hilfe der ATLAS Messung die Wilson-Koeffizienten eingeschränkt.
 
-\section{Ergebnis für die Wilson-Koeffizienten}
-
+\section{Einschränkung der Wilson-Koeffizienten}
+Mit Hilfe des EFTfitter kann der von ATLAS gemessene $t\bar{t}\gamma$ Produktionswirkungsquerschnitt auf mögliche Abweichungen durch die EFT-Operatoren $O_{tG}$, $O_{tW}$ und $O_{tB}$ getestet werden. Dazu wird das in Kapitel~\ref{Modell} berechnete Modell verwendet. Es ermöglicht Einschränkungen für die Wilson-Koeffizienten der EFT-Operatoren zu finden.\\
+In den Abbildungen~\ref{fig:ctg},~\ref{fig:ctw} und~\ref{fig:ctb} sind die marginalisierten, eindimensionalen Posteriorverteilung der Wilson-Koeffizienten, die mit Hilfe des EFTfitters berechnet werden, dargestellt. Da der Fit mit einem quadratischen Modell in den Wilson-Koeffizienten durchgeführt wird, stimmt die Messung an zwei Stellen mit der Vorhersage überein, sodass sich zwei Peaks ergeben. Da für jeden Wilson-Koeffizienten eines der Maxima bei Null liegt und das kleinste $\SI{68.1}{\percent}$ Intervall diesen Wert umfasst, kann die SM Vorhersage, dass die Wilson-Koeffizienten Null sind, nicht verworfen werden.
+Dieses Intervall ist für alle Wilson-Koeffizient in Abbildung~\ref{fig:wil} dargestellt. Auffällig ist, dass die Intervalle alle die Null enthalten, aber nur $\tilde{C}_{tG}$ um diese zentriert ist und zudem die Einschränkung deutlich kleiner ist. Dies liegt an den größeren Abweichungen der Parameter von dem parabelförmigen Verlauf, die bereits in Abbildung~\ref{fig:WtG} beobachtet wurden. Zudem ist zu bebachten, dass die Einschränkungen für $\tilde{C}_{tW}$ und $\tilde{C}_{tB}$ nahezu übereinstimmen. Dies war zu erwarten, da beide Wilson-Koeffizienten aus der Photonabstrahlung stammen und somit direkt mit einander verbunden sind. Die noch relativ großen Intervalle für die Einschränkung von $\tilde{C}_{tW}$ und $\tilde{C}_{tB}$ motivierten eine Kombination mit weiteren Observablen, die sensitiv auf die gleichen Operatoren sind, um eine bessere Einschränkung zu erhalten, und unter Umständen eines der beiden Maxima ausgeschlossen werden kann, sodass sich das $\SI{68.1}{\percent}$ Intervall verkleinert. Um eine höhere Aussagekraft dieser Ergebnisse zu erhalten, empfielt es sich die Einschränkung mit mehreren Messungen für den $t\bar{t}\gamma$ Produktionswirkungsquerschnitt zu berechnen.
 \begin{figure}
     \centering
-    \includegraphics[width=0.8\textwidth]{Plots/result_CtG.pdf}
+    \includegraphics[width=0.8\textwidth]{Plots/ctb.pdf}
+    \caption{Eindimensionale Posteriorverteilung des Wilson-Koeffizienten $\tilde{C}_{tW}$.}
+    \label{fig:ctw}
 \end{figure}
 \begin{figure}
     \centering
-    \includegraphics[width=0.8\textwidth]{Plots/result_CtW.pdf}
+    \includegraphics[width=0.8\textwidth]{Plots/ctg.pdf}
+    \caption{Eindimensionale Posteriorverteilung des Wilson-Koeffizienten $\tilde{C}_{tB}$.}
+    \label{fig:ctb}
 \end{figure}
 \begin{figure}
     \centering
-    \includegraphics[width=0.8\textwidth]{Plots/result_CtB.pdf}
+    \includegraphics[width=0.8\textwidth]{Plots/ctw.pdf}
+    \caption{Eindimensionale Posteriorverteilung des Wilson-Koeffizienten $\tilde{C}_{tG}$.}
+    \label{fig:ctg}
 \end{figure}
 \begin{figure}
     \centering
-    \includegraphics[width=0.8\textwidth]{Plots/wilson.pdf}
+    \includegraphics[width=0.7\textwidth]{Plots/wilson.pdf}
+    \caption{Darstellung des kleinsten $\SI{68.1}{\percent}$ Intervalls der Wilson-Koeffizienten zur Veranschaulichung der Verträglichkeit mit Null.}
+    \label{fig:wil}
 \end{figure}
 %
 %
