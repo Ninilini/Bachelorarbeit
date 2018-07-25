@@ -122,3 +122,14 @@ Um eine höhere Aussagekraft dieser Ergebnisse zu erhalten, empfielt es sich die
 %
 %
 \chapter{Zusammenfassung}
+Um eine Kombination der in unterschiedlichen Phasenräumen erfolgten Messungen des $t\bar{t}\gamma$ Produktionswirkungsquerschnitts zu ermöglichen, ist zunächst eine Phasenraumstudie mit MadGraph5 erfolgt. Hierzu wurde zunächst, sowohl für die ATLAS Messung als auch für die beiden CMS-Messungen ein $k$-Faktor als Näherung zwischen der LO und NLO Rechnung bestimmt. Unter Anwendung dieses Faktor lässt sich der Phasenraumfaktor zwischen den beiden gemessenen Phasenräumen zu $f=3$ bestimmen. Erweitert man die CMS Messungen um diesen Faktor in den ATLAS Phasenraum ergeben sie sich zu:
+\begin{align*}
+  \sigma^{fid(A), \text{CMS}}_{t\bar{t}\gamma, e} &= 410 \pm 140~ \si{\femto\barn}\\
+  \sigma^{fid(A), \text{CMS}}_{t\bar{t}\gamma, \mu} &= 350 \pm 100~ \si{\femto\barn}.
+\end{align*}
+Im Anschluss erfolgt eine einfache Kombination der Messungen mit dem EFTfitter unter der Annahme, dass sie unkorreliert sind. Der kombinierte Produktionswirkungsquerschnitt ergibt:
+\begin{align*}
+  \sigma_{\text{Kombi}} = 149,79 \pm 17,57~ \si{\femto\barn}.
+\end{align*}
+Es fällt auf, dass das kombinierte Ergebnis sehr nahe an der ATLAS Messung liegt, dies liegt unter anderem daran, dass Gewichtung der Messung in der Kombination anhand ihrer Fehler erfolgt. Diese sind durch die Erweiterung bei den CMS Messungen sehr groß. Daher empfielt es sich weiter Studien zu den Unsicherheiten und ihren Gültigkeiten in den einzelnen Phasenräumen durchzuführen. Die anschließend für die Kombination durchgeführte Korrelationsstudie ergibt, dass die Kombination für eine Korrelation zwischen den CMS Messungen nahezu unabhängig ist, sodass in diesem Fall eine unkorrelierte Annahme zu rechtfertigen ist. Jedoch weißt die Kombination für eine Korrelation zwischen den CMS Messungen und der ATLAS Messung eine starke Abhängigkeit auf. Dies motiviert neben der genaueren Untersuchung der Unsicherheiten, auch die Korrelation zwischen den Messungen zu bestimmen.\\
+Da der kombinierte Wert nahe der ATLAS Messung liegt, wird für die EFT-Interpretation nur noch diese verwendet. Da der EFTfitter für eine genaue Rechnung eine extrem hohe Laufzeit besitzt, erfolgt zunächst die Bestimmung eines Modells zur Approximation mit Hilfe von MadGraph. Dieses Modell wird anschließend im EFTfitter implementiert, um mit ihm die am $t\bar{t}\gamma$ Produktionswirkungsquerschnitt beteiligten Wilson-Koeffizienten $C_{tG}$, $C_{tW}$ und $C_{tB}$ einzugrenzen. Dabei ergibt sich für alle drei Koeffizienten eine Verträglichkeit des kleinsten $\SI{68.1}{\percent}$ Intervalls mit der Null. Die Intervalle sind jedoch für die an der Photonabstrahlung beteiligten Wilson-Koeffizienten $C_{tW}$ und $C_{tB}$ relativ breit, sodass eine weiter Untersuchung anzustreben ist.
