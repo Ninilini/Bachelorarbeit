@@ -22,8 +22,8 @@ aufgeführt.\\
     \caption{Verwendete Schnitte auf den gemessenen Phasenraum.}
     \label{tab:cut}
  \end{table}
-Dabei fällt auf, dass die Schnitte für das Photon sich deutlich unterscheiden. So setzt ATLAS einen Transversalimpuls von $p_{T} > \SI{15}{\giga\electronvolt}$ voraus, wohingegen CMS mindestens $p_{T} > \SI{25}{\giga\electronvolt}$ einfordert. Außerdem wählt ATLAS eine Pseudorapidität von $|\eta| < 2,37$, während CMS $|\eta| < 1,44$ annimmt. Zudem setzt CMS einen durch das Neutrino fehlenden Transversalimpuls von $p_{T}^{miss} > \SI{20}{\giga\electronvolt}$ voraus.
-ATLAS setzt zudem zwischen dem Photon und dem Lepton mindestens ein Abstand von $\symup{\Delta} R(\gamma, \text{l}) = 0,7$, zwischen dem Photon und dem Jet $\symup{\Delta} R(\gamma, \text{Jet}) = 0,5$ und zwischen dem $b$-Quark und dem Jet $\symup{\Delta} R(\text{b}, \text{Jet}) = 0,3$ vorraus.
+Dabei fällt auf, dass sich die Schnitte für das Photon deutlich unterscheiden. So setzt ATLAS einen Transversalimpuls von $p_{T} > \SI{15}{\giga\electronvolt}$ voraus, wohingegen CMS mindestens $p_{T} > \SI{25}{\giga\electronvolt}$ einfordert. Außerdem wählt ATLAS eine Pseudorapidität von $|\eta| < 2,37$, während CMS $|\eta| < 1,44$ annimmt. Zudem setzt CMS einen durch das Neutrino fehlenden Transversalimpuls von $p_{T}^{miss} > \SI{20}{\giga\electronvolt}$ voraus.
+ATLAS setzt zudem zwischen dem Photon und dem Lepton mindestens einen Abstand von $\symup{\Delta} R(\gamma, \text{l}) = 0,7$, zwischen dem Photon und dem Jet $\symup{\Delta} R(\gamma, \text{Jet}) = 0,5$ und zwischen dem $b$-Quark und dem Jet $\symup{\Delta} R(\text{b}, \text{Jet}) = 0,3$ vorraus.
 Das CMS Papier umfasst keine weiteren Angaben zur Isolation der Objekte.\\
 Die von ATLAS und CMS gemessenen Produktionswirkungsquerschnitte für $t\bar{t}\gamma$ ergeben sich zu:
 \begin{align*}
@@ -53,24 +53,27 @@ Werden für eine Kombination $n$ Messungen $x_i$ mit $(i= 1,...,n)$ und $N$ Obse
   -2 \ln{L(\mathbf{x}|\lambda)} = \sum^{n}_{i=1} \sum^{n}_{j=1} \left[\mathbf{x} - U\mathbf{y}\right]_{i} \mathcal{M}_{ij}^{-1} \left[\mathbf{x} - U\mathbf{y}\right]_{j}
   \label{eqn:like}
 \end{align}
-beschrieben. $U_{ij}$ ist das Matrixelement einer $n \times N$-Matrix $U$, welches eins ist, wenn $x_i$ die Messung zur Observable $y_i$ ist und ansonsten null. Da die Unsicherheiten der Messung $x_i$ korreliert sein können, beschreibt
+beschrieben. $U_{ij}$ ist das Matrixelement einer $n \times N$-Matrix $U$, welches eins ist, wenn $x_i$ die Messung zur Observable $y_i$ ist und ansonsten Null. Da die Unsicherheiten der Messung $x_i$ korreliert sein können, beschreibt
 \begin{align}
   \mathcal{M}_{ij} = \text{cov}[x_i, x_j] = \sum_{k=1}^{M} \text{cov}^{(k)}[x_i, x_j]
 \end{align}
-die Elemente der symmetrischen und positiv semidefiniten Kovarianzmatrix, bei der $M$ die Anzahl der verscheidenen Quellen an Unsicherheiten ist. Das mit dem EFTfitter berechnete Ergebnis wird ebenfalls bei der Verwendung der BLUE-Methode (\textit{best linear unbiased estimator})\cite{LYONS1988110} erhalten. Da diese einen Spezialfall des EFTfitter bildet und einer Minimierung der Likelihood \eqref{eqn:like} entspricht.
+die Elemente der symmetrischen und positiv semidefiniten Kovarianzmatrix, bei der $M$ die Anzahl der verschiedenen Quellen an Unsicherheiten ist. Das mit dem EFTfitter berechnete Ergebnis wird ebenfalls bei der Verwendung der BLUE-Methode (\textit{best linear unbiased estimator})\cite{LYONS1988110} erhalten. Da diese einen Spezialfall des EFTfitter bildet und einer Minimierung der Likelihood \eqref{eqn:like} entspricht.
 
 \section{Phasenraumstudie mit MadGraph5}
 \label{phasencms}
 Um eine Kombination der beiden Messungen des $t\bar{t}\gamma$ Wirkungsquerschnitts von CMS und ATLAS ermöglichen zu können, muss zuvor eine Phasenraumstudie durchgeführt werden. Da beide Messungen in unterschiedlichen Phasenräumen durchgeführt wurden, müssen sie zunächst vereinheitlicht werden.
 Der Vergrößerung eines Phasenraums liegt ein linearer Zusammenhang zu Grunde, sodass als erste Approximation ein Faktor zwischen den beiden Phasenräumen bestimmt werden kann. Dazu können mit Hilfe des Monte Carlo Generators MadGraph5\cite{Alwall:2014hca} (MG) zunächst die beiden Produktionswirkungsquerschnitte für $t\bar{t}\gamma$ berechnet werden.
-Anschließend werden diese beiden Werte durcheinader geteilt und der sich ergebene Faktor wird auf die CMS-Messung angewandt. Dadurch wird diese Messung in den Phasenraum der ATLAS Messung erweitert.\\
-Zunächst einmal wird der semileptonische Zerfall des $t\bar{t}$-Quarkpaars unter Abstrahlung des Photons mit den expliziten Endzuständen in MG simuliert. Dazu wird das SM als Modell und das $\text{CTEQ}6\text{L}1$ PDF Set\cite{Paakkinen:2018zbs} zum Implementieren des Prozesses genutzt. Bei der Berechnung der semileptonischen Endzustände kann jedoch nur die führende Ordnung (\textit{leading-order}, LO) betrachtet werden. Für die Berechnung der Produktionswirkungsquerschnitte werden die in Kapitel \ref{kap:messung} angegebenen Schnitte genutzt. Da von der CMS-Kollaboration in dem Papier keine weiteren Aussagen über die Isolation der einzelnen Objekte gemacht werden, werden für diese Arbeit die gleichen Abstände wie bei ATLAS verwendet. Unter diesen Vorraussetzungen ergeben sich die Wirkungsquerschnitte aus der MG Simulation zu:
+Anschließend werden diese beiden Werte durcheinader geteilt und der sich ergebende Faktor wird auf die CMS-Messung angewandt. Dadurch wird diese Messung in den Phasenraum der ATLAS Messung erweitert.\\
+Zunächst einmal wird der semileptonische Zerfall des $t\bar{t}$-Quarkpaars unter Abstrahlung des Photons mit den expliziten Endzuständen in MG simuliert.
+Dazu wird das SM als Modell und das $\text{CTEQ}6\text{L}1$ PDF Set\cite{Paakkinen:2018zbs} zum Implementieren des Prozesses genutzt. Bei der Berechnung der semileptonischen Endzustände kann jedoch nur die führende Ordnung (\textit{leading-order}, LO) betrachtet werden. Für die Berechnung der Produktionswirkungsquerschnitte werden die in Kapitel~\ref{kap:messung} angegebenen Schnitte genutzt.
+Da von der CMS-Kollaboration in dem Papier keine weiteren Aussagen über die Isolation der einzelnen Objekte gemacht werden, werden für diese Arbeit die gleichen Abstände wie bei ATLAS verwendet.
+Unter diesen Vorraussetzungen ergeben sich die Wirkungsquerschnitte aus der MG Simulation zu:
 \begin{align}
   \sigma^{fid, \text{ATLAS}}_{\text{LO}} &= 146,5 \pm 0,095~ \si{\femto\barn}\\
   \sigma^{fid, \text{CMS}}_{\text{LO}} &= 49,29 \pm 0,034~ \si{\femto\barn}.
 \end{align}
-Auffällig ist dabei, dass der Wert von ATLAS $2,97$ mal so groß ist, wie der CMS Produktionswirkungsquerschnitt. Dies ist unerwartet, da beide Ergebnisse der Messungen sehr ähnlich sind und in den Papieren als vertäglich mit dem SM angesehen werden.
-Beim Vegleich der Photon-Schnitte fällt jedoch auf, dass durch den höheren $p_T$-Schnitt von CMS bereits ungefähr $90000$ der anfänglichen $220000$ Ereignisse verloren gehen. Durch den Schnitt auf die Pseudorapidität entfallen ebenfalls nochmal etwa $45000$ Ereignisse. Dies entspricht etwa $\SI{60}{\percent}$ der anfänglichen Ereignisse, sodass der Faktor $3$ durchaus plausibel erscheint. Eine Veranschaulichung dieser Änderungen befindet sich in Abbildungildung \ref{fig:schnitte}.\\
+Auffällig ist dabei, dass der Wert von ATLAS $2,97$ mal so groß ist, wie der von CMS gemessene Produktionswirkungsquerschnitt. Dies ist unerwartet, da beide Ergebnisse der Messungen sehr ähnlich sind und in den Papieren als vertäglich mit dem SM angesehen werden.
+Beim Vegleich der Photon-Schnitte fällt jedoch auf, dass durch den höheren $p_T$-Schnitt von CMS bereits ungefähr $90000$ der anfänglichen $220000$ Ereignisse verloren gehen. Durch den Schnitt auf die Pseudorapidität entfallen ebenfalls nochmal etwa $45000$ Ereignisse. Dies entspricht etwa $\SI{60}{\percent}$ der anfänglichen Ereignisse, sodass der Faktor $3$ durchaus plausibel erscheint. Eine Veranschaulichung dieser Änderungen befindet sich in Abbildung~\ref{fig:schnitte}.\\
 \begin{figure}
     \begin{subfigure}[c]{0.5\textwidth}
       \includegraphics[width=\textwidth]{Plots/photon_pt_Atlas.pdf}
@@ -88,7 +91,7 @@ Beim Vegleich der Photon-Schnitte fällt jedoch auf, dass durch den höheren $p_
       \includegraphics[width=\textwidth]{Plots/photon_eta_Cms.pdf}
       \subcaption{CMS}
     \end{subfigure}
-    \caption{Verteilungen der Transversalimpulse und der Pseudorapidität der Photonen. Die grünen Linien representieren die von ATLAS und CMS verwendeten Schnitte. Die verwendeten Datensätze stammen aus Simmulationen mit MadGraph5.}
+    \caption{Verteilungen der Transversalimpulse und der Pseudorapidität der Photonen. Die grünen Linien representieren die von ATLAS und CMS verwendeten Schnitte. Die verwendeten Datensätze stammen aus Simulationen mit MadGraph5.}
     \label{fig:schnitte}
 \end{figure}
 Um einen möglichst genauen Faktor zwischen den gemessenen Phasenräumen zu erhalten, wird eine Rechnung in der nächst-führenden Ordnung (\textit{next-to-leading-oder}, NLO) angestrebt. Dies ist bei MG für die expliziten Endzustände nicht möglich. Daher bietet es sich an, den Prozess $p~p~$\textrightarrow$~t~\bar{t}~\gamma$~ ohne diese, sowohl in LO als auch in NLO zu simulieren. Daraus kann im Anschluss ein $k$-Faktor als Näherung zwischen den beiden Ordnungen berechnet werden.\\
@@ -102,12 +105,14 @@ und folgende Werte in der NLO-Rechnung:
   \sigma^{\text{ATLAS}}_{\text{NLO}} &= 452,5 \pm 1,2~ \si{\femto\barn}\\
   \sigma^{\text{CMS}}_{\text{NLO}} &= 243,6 \pm 0,73~ \si{\femto\barn}.
 \end{align}
-Diese Wirkungsquerschnitte lassen sich durch Multiplizieren mit dem Verzweigungsverhältnis (\textit{branching ratio}, $\mathrm{BR}$) für den semileptonischen Zerfall in die, der expliziten Endzustände umrechnen. Das Verzweigungsverhältnis gibt die Wahrscheinlichkeit an, dass ein Zustand in einen bestimmten Endzustand zerfällt und liegt in diesem Fall bei $\mathrm{BR}=\SI{30}{\percent}$. Werden die Wirkungsquerschnitte nun mit der $\mathrm{BR}$ multipliziert und der NLO-Wert durch den der LO-Rechnung geteilt, ergibt sich folgender $k$-Faktor für ATLAS und CMS:
+Diese Wirkungsquerschnitte lassen sich durch Multiplizieren mit dem Verzweigungsverhältnis (\textit{branching ratio}, $\mathrm{BR}$) für den semileptonischen Zerfall in die der expliziten Endzustände umrechnen.
+Das Verzweigungsverhältnis gibt die Wahrscheinlichkeit an, dass ein Zustand in einen bestimmten Endzustand zerfällt und liegt in diesem Fall bei $\mathrm{BR}=\SI{30}{\percent}$. Werden die Wirkungsquerschnitte nun mit der $\mathrm{BR}$ multipliziert und der NLO-Wert durch den der LO-Rechnung geteilt, ergibt sich folgender $k$-Faktor für ATLAS und CMS:
 \begin{align}
   k_{\text{ATLAS}} &= \frac{0,3 \cdot 682,8~ \si{\femto\barn}}{0,3 \cdot 452,5~ \si{\femto\barn}} = 1,509\\
   k_{\text{CMS}} &= \frac{0,3 \cdot 361,6~ \si{\femto\barn}}{0,3 \cdot 243,6~ \si{\femto\barn}} = 1,484.
 \end{align}
-Auf Grund ihrer geringen Größe wurden die Unsicherheiten hier vernachlässigt. Unter Anwendung dieser $k$-Faktoren auf die zu Beginn bestimmten Produktionswirkungsquerschnitte ergibt sich der Phasenraumfaktor $f$ zwischen den gemessenen Phasenräumen von ATLAS und CMS zu:
+Auf Grund ihrer geringen Größe wurden die Unsicherheiten hier vernachlässigt.
+Unter Anwendung dieser $k$-Faktoren auf die zu Beginn bestimmten Produktionswirkungsquerschnitte ergibt sich der Phasenraumfaktor $f$ zwischen den gemessenen Phasenräumen von ATLAS und CMS zu:
 \begin{align}
   f = \frac{1,509 \cdot 146,5~ \si{\femto\barn}}{1,484 \cdot 49,29~ \si{\femto\barn}} = 3,0221
 \end{align}
@@ -130,18 +135,23 @@ Wird eine unkorrelierte Kombination des angegebenen Produktionswirkungsquerschni
 \end{align}
 Auffällig ist, dass das kombinierte Ergebnis sehr dicht an dem von ATLAS gemessenen Wert liegt.
 Dies ist damit zu begründen, dass eine Gewichtung der gegebenen Messungen anhand ihrer Unsicherheiten durchgeführt wird.
-Durch die Extrapolation über die Unsicherheiten der CMS Messungen liegen diese in der selben Größenordnung wie die Nominalwerte, sodass diese Wirkungsquerschnitte bei der Berechnung der Kombination nur sehr gering beitragen. Bei der Betrachtung der gaußförmigen Verteilungen um den gemessenen Produktionswirkungsquerschnitt in Abbildung~\ref{fig:gau} fällt auf, dass die Verteilungen der CMS Messungen auf Grund der großen Unsicherheiten deutlich breiter sind und somit ist die ATLAS Messung genauer. Dies erklärt die geringe Gewichtung der CMS Messungen durch den EFT-Fitter.\\
+Durch die Extrapolation über die Unsicherheiten der CMS Messungen liegen diese in der selben Größenordnung wie die Nominalwerte, sodass diese Wirkungsquerschnitte bei der Berechnung der Kombination nur sehr gering beitragen.
+Bei der Betrachtung der gaußförmigen Verteilungen um den gemessenen Produktionswirkungsquerschnitt in Abbildung~\ref{fig:gau} fällt auf, dass die Verteilungen der CMS Messungen auf Grund der großen Unsicherheiten deutlich breiter sind und somit die ATLAS Messung genauer ist.
+Dies erklärt die geringe Gewichtung der CMS Messungen durch den EFT-Fitter.\\
 Dieses Ergebnis motiviert neben den Ergebnissen aus Kapitel~\ref{phasencms} ebenfalls eine genauere Betrachtung der Unsicherheiten und ihrer Gültigkeit in dem erweiterten Phasenraum. Zudem bietet es sich an, eine Korrelationsstudie durchzuführen, um zu überprüfen, ob eine Korrelation Auswirkungen auf das Ergebnis der Kombination hat und somit eine unkorrelierte Kombination überhaupt gerechtfertigt ist.
 
 \begin{figure}
   \centering
-  \includegraphics[width=0.6\textwidth]{Plots/gauss.pdf}
+  \includegraphics[width=0.5\textwidth]{Plots/gauss.pdf}
   \caption{Veranschaulichung der gaußverteilten Unsicherheiten um den Mittelwert der verschiedenen Messungen. Diese sind auf die selbe Höhe normiert.}
   \label{fig:gau}
 \end{figure}
 
 \section{Korrelationsstudie}
-Um den Einfluss möglicher Korrelationen auf die Kombination zu untersuchen, wird eine Korrelationsstudie für das verwendete Modell durchgeführt. Dabei wird zunächst nur eine Korrelation zwischen den beiden CMS Messungen untersucht. Hierfür werden die Ergebnisse aus Kapitel~\ref{phasencms} verwendet. Die verwendete Korrelationsmatrix ist symmetrisch, positiv semidefinit und hat die Form:
+Um den Einfluss möglicher Korrelationen auf die Kombination zu untersuchen, wird eine Korrelationsstudie für das verwendete Modell durchgeführt.
+Dabei wird zunächst nur eine Korrelation zwischen den beiden CMS Messungen untersucht.
+Hierfür werden die Ergebnisse aus Kapitel~\ref{phasencms} verwendet.
+Die verwendete Korrelationsmatrix ist symmetrisch, positiv semidefinit und hat die Form:
 \begin{align}
   \text{Corr}_{\sigma,\text{CMS}}\,=\begin{pmatrix}
   1 & \rho_{e, \mu}\\
@@ -149,7 +159,11 @@ Um den Einfluss möglicher Korrelationen auf die Kombination zu untersuchen, wir
   \end{pmatrix}.
   \label{eqn:matrix1}
 \end{align}
-Für eine erste Betrachtung wird $\rho_{e, \mu}= \rho_{\mu, e}$ im Bereich $[-0,9~,~0,9]$ mit einer Schrittweite von $0,1$ variiert. Das Ergebnis der Kombinationen der beiden semileptonischen Produktionswirkungsquerschnitte von CMS unter Verwendung der Korrelationsmatrix $\text{Corr}_{\sigma,\text{CMS}}$ ist in Abbildung~\ref{fig:corrcms} dargestellt. Dabei lässt sich ein nahezu konstanter Verlauf erkennen, der lediglich im Bereich hoher positiver Korrelationen abweicht. Da keine größeren Abweichungen zu erkennen sind, scheint die Korrelation zwischen den beiden Messungen keinen größeren Einfluss auf die Kombination zuhaben. Dies rechtfertigt die Annahme, dass die Messungen in dem genutzten Modell als unkorreliert betrachtet werden können. Die großen Fehlerbalken lassen sich auf die großen Unsicherheiten der beiden Messungen zurückführen. Zudem wachsen sie bei einer positiven Korrelation weiter an, wohingegen sie bei der negativen Korrelation geringer werden. Dies lässt sich mit dem Zusammenhang:
+Für eine erste Betrachtung wird $\rho_{e, \mu}= \rho_{\mu, e}$ im Bereich $[-0,9~,~0,9]$ mit einer Schrittweite von $0,1$ variiert.
+Das Ergebnis der Kombinationen der beiden semileptonischen Produktionswirkungsquerschnitte von CMS unter Verwendung der Korrelationsmatrix $\text{Corr}_{\sigma,\text{CMS}}$ ist in Abbildung~\ref{fig:corrcms} dargestellt.
+Dabei lässt sich ein nahezu konstanter Verlauf erkennen, der lediglich im Bereich hoher positiver Korrelationen abweicht.
+Da keine größeren Abweichungen zu erkennen sind, scheint die Korrelation zwischen den beiden Messungen keinen größeren Einfluss auf die Kombination zu haben.
+Dies rechtfertigt die Annahme, dass die Messungen in dem genutzten Modell als unkorreliert betrachtet werden können. Die großen Fehlerbalken lassen sich auf die großen Unsicherheiten der beiden Messungen zurückführen. Zudem wachsen sie bei einer positiven Korrelation weiter an, wohingegen sie bei der negativen Korrelation geringer werden. Dies lässt sich mit dem Zusammenhang:
 \begin{align}
   \sigma_{\text{Fehler, kombi}} = \sigma_{\text{Fehler, A}}^2 + 2\rho\sigma_{\text{Fehler, A}}\sigma_{\text{Fehler, B}} + \sigma_{\text{Fehler, B}}^2
 \end{align}
@@ -164,22 +178,22 @@ Um zu untersuchen, ob das beobachtete Verhalten auch bei einer Kombination mit A
   \label{eqn:matrix2}
 \end{align}
 In diesem Fall wird der Korrelationskoeffizient $\rho_{e, \mu}= \rho_{\mu, e}$ ebenfalls im Bereich $[-0,9~,~0,9]$ variiert. Bei der Betrachtung von Abbildung~\ref{fig:corrca} fällt deutlich auf, dass die beiden CMS-Messungen bei einer Kombination mit dem EFTfitter nicht stark gewichtet werden. Dies hat wieder die in Kapitel~\ref{kombi} genannte Ursache der Unsicherheiten. Aus diesem Grund sind die Fehlerbalken deutlich kleiner als bei der Korrelationstudie, die ausschließlich zwischen den CMS Produktionswirkungsquerschnitten durchgeführt wurde. Eine Abweichung wird lediglich bei sehr großen negativen Korrelationen beobachtet.
-Dies lässt sich damit erklären, dass durch die Korrelation die CMS Messungen stärker gewichtet wird. Im restlichen Verlauf wird auf Grund der großen Unsicherheiten dieser Messungen die ATLAS Messung stärker gewichtet, sodass sich auch die korrelierte Kombination stark dem ATLAS Messwert annähert. Somit scheint auch in diesem Fall die Korrelation bei der Kombination keinen größeren Einfluss zu haben, sodass die Annahme keine Korrelation zu haben, gerechtfertigt ist. Es ist jedoch ist zu beachten, dass im Bereich $[-0,9~,~-0,6]$ trotzdem eine deutlich Abweichung vorhanden ist und deshalb weitere Untersuchungen sinnvoll sind.\\
+Dies lässt sich damit erklären, dass durch die Korrelation die CMS Messungen stärker gewichtet wird. Im restlichen Verlauf wird auf Grund der großen Unsicherheiten dieser Messungen die ATLAS Messung stärker gewichtet, sodass sich auch die korrelierte Kombination stark dem ATLAS Messwert annähert. Somit scheint auch in diesem Fall die Korrelation bei der Kombination keinen größeren Einfluss zu haben, sodass die Annahme keine Korrelation zu haben, gerechtfertigt ist. Es ist jedoch zu beachten, dass im Bereich $[-0,9~,~-0,6]$ trotzdem eine deutliche Abweichung vorhanden ist und deshalb weitere Untersuchungen sinnvoll sind.\\
 \begin{figure}
   \centering
-  \includegraphics[width=0.6\textwidth]{Plots/corr_CMS.pdf}
+  \includegraphics[width=0.5\textwidth]{Plots/corr_CMS.pdf}
   \caption{Untersuchung der Auswirkung verschiedener Korrelationen zwischen $[-0,9~,~0,9]$ zwischen den beiden semileptonischen Produktionswirkungsquerschnittmessungen von CMS.}
   \label{fig:corrcms}
 \end{figure}
 \begin{figure}
   \centering
-  \includegraphics[width=0.6\textwidth]{Plots/fcorr_cms.pdf}
+  \includegraphics[width=0.5\textwidth]{Plots/fcorr_cms.pdf}
   \caption{Untersuchung der Auswirkung verschiedener Korrelationen zwischen $[-0,9~,~0,9]$ zwischen den beiden semileptonischen Produktionswirkungsquerschnittmessungen von CMS, bei einer Kombination mit der Messung von ATLAS.}
   \label{fig:corrca}
 \end{figure}
 \begin{figure}
   \centering
-  \includegraphics[width=0.55\textwidth]{Plots/corr_CA.pdf}
+  \includegraphics[width=0.5\textwidth]{Plots/corr_CA.pdf}
   \caption{Untersuchung der Auswirkung verschiedener Korrelationen zwischen $[-0,7~,~0,7]$ zwischen den beiden semileptonischen Produktionswirkungsquerschnittmessungen von CMS und der ATLAS Messung.}
   \label{fig:corrCA}
 \end{figure}
@@ -189,15 +203,16 @@ Zuletzt wird die Korrelation zwischen der ATLAS Messung und den CMS Messungen un
   1 & \rho_{e, \mu} & \rho_{e, \mu}\\
   \rho_{e, \mu} & 1 &0\\
   \rho_{e, \mu} & 0 & 1
-  \end{pmatrix}
+  \end{pmatrix} \, .
   \label{eqn:matrix2}
 \end{align}
-und um die Semidefinitheit dieser Matrix zu gewährleisten, wird der Korrelationskoeffizient entsprechend in einer Schrittweite von $0,1$ im Bereich $[-0,7~,~0,7]$ variiert. In Abbildung~\ref{fig:corrCA} sind die sich ergebenden Ergebnisse dargestellt. Es fällt deutlich auf, dass der Verlauf stark variiert. Dies zeigt, dass das verwendete Modell zur Kombination der Messungen sensitiv gegenüber Korrelationen zwischen den Messungen des $t\bar{t}\gamma$ Produktionswirkungsquerschnitts von ATLAS und CMS ist.
-Da die Messungen alle am LHC getätigt wurden und unter ähnlichen Annahmen bestimmt wurden, ist es sehr wahrscheinlich, dass die Messungen eine Korrelation aufweisen könnten. Diese ist jedoch nur mit weiteren Untersuchungen festzulegen und da das verwendete Modell eine Abhängigkeit von dieser Korrelation besitzt, ist die Annahme, dass die Messungen nicht korreliert sind für die Kombination nicht gerechtfertigt.
+Um die Semidefinitheit dieser Matrix zu gewährleisten, wird der Korrelationskoeffizient entsprechend in einer Schrittweite von $0,1$ im Bereich $[-0,7~,~0,7]$ variiert. In Abbildung~\ref{fig:corrCA} sind die sich ergebenden Ergebnisse dargestellt. Es fällt deutlich auf, dass der Verlauf stark variiert.
+Dies zeigt, dass das verwendete Modell zur Kombination der Messungen sensitiv gegenüber Korrelationen zwischen den Messungen des $t\bar{t}\gamma$ Produktionswirkungsquerschnitts von ATLAS und CMS ist.
+Da die Messungen alle am LHC getätigt wurden und unter ähnlichen Annahmen bestimmt wurden, ist es sehr wahrscheinlich, dass die Messungen eine Korrelation aufweisen könnten. Diese ist jedoch nur mit weiteren Untersuchungen festzulegen. Da das verwendete Modell eine Abhängigkeit von dieser Korrelation besitzt, ist die Annahme, dass die Messungen nicht korreliert sind für die Kombination nicht gerechtfertigt.
 
 \section{Interpretation der Ergebnisse der Kombination}
-Zusammenfassend lässt sich feststellen, dass eine einfache Kombination mit der Annahme unkorrelierter Messungen nicht sinnvoll ist. Dies liegt neben der Erweiterung des Phasenraums der CMS Messungen und der Extrapolation der Unsicherheiten, an der Abhängigkeit des Kombinationsergebnisses von einer Korrelation zwischen den Messungen.
-Mögliche Lösungen wären genauere Rechnungen, um den Faktor $f$ zwischen den Phasenräumen nicht über eine Näherung zwischen LO- und NLO-Rechnungen zu bestimmen oder die ATLAS Messung des Produktionswirkungsquerschnitts in den CMS Phasenraum zu transformieren. In diesem Fall werden die Unsicherheiten durch die Extrapolation nicht vergrößert.
+Zusammenfassend lässt sich feststellen, dass eine einfache Kombination mit der Annahme unkorrelierter Messungen nicht sinnvoll ist. Dies liegt neben der Erweiterung des Phasenraums der CMS Messungen und der Extrapolation der Unsicherheiten an der Abhängigkeit des Kombinationsergebnisses von einer Korrelation zwischen den Messungen.
+Mögliche Lösungen sind genauere Rechnungen, um den Faktor $f$ zwischen den Phasenräumen nicht über eine Näherung zwischen LO- und NLO-Rechnungen zu bestimmen oder die ATLAS Messung des Produktionswirkungsquerschnitts in den CMS Phasenraum zu transformieren. In diesem Fall werden die Unsicherheiten durch die Extrapolation nicht vergrößert.
 Zudem zeigen die Ergebnisse aus der Korrelationsstudie, dass die Annahme, dass die Messungen nicht korreliert sind, nur für die beiden CMS Messungen gerechtfertigt ist. Für die Korrelation zwischen der ATLAS und den CMS Messungen bedarf es jedoch weiterer Untersuchungen.
 Da unter den in dieser Arbeit getätigten Annahmen die Kombination der Messungen nahe an dem ATLAS Wert liegt und die beiden Messungen hinsichtlich ihrer Unsicherheiten und deren Korrelationen erst weiter untersucht werden müssen, wird für die weitere Arbeit nur die ATLAS Messung verwendet.
 %
